@@ -21,9 +21,20 @@ export class PostResolver {
   }
 
   @Query(() => [Post], { nullable: true })
-  async getAll(@Ctx() ctx: Context): Promise<Post[] | null> {
+  async getAllByDate(@Ctx() ctx: Context): Promise<Post[] | null> {
     const post = await ctx.prisma.post.findMany({
       orderBy: { createdAt: 'desc' },
+    })
+
+    if (!post) return null
+
+    return post
+  }
+
+  @Query(() => [Post], { nullable: true })
+  async getAllByLike(@Ctx() ctx: Context): Promise<Post[] | null> {
+    const post = await ctx.prisma.post.findMany({
+      orderBy: { like: 'desc' },
     })
 
     if (!post) return null
@@ -40,6 +51,8 @@ export class PostResolver {
       data: {
         id: uuid(),
         title: data.title,
+        description: data.description,
+        like: data.like,
         article: data.article,
         author: data.author,
         createdAt: data.createdAt,

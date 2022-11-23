@@ -15,5 +15,11 @@ export class PostInput {
   authorId: string
 
   @Field()
+  description: string
+
+  @Field()
+  like: number
+
+  @Field()
   createdAt: Date
 }

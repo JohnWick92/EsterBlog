@@ -3,6 +3,8 @@ CREATE TABLE "Post" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "author" TEXT NOT NULL,
+    "like" INTEGER NOT NULL,
+    "description" TEXT NOT NULL,
     "article" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL,
     "authorId" TEXT NOT NULL,

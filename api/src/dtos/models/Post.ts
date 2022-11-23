@@ -18,5 +18,11 @@ export class Post {
   authorId: string
 
   @Field()
+  description: string
+
+  @Field()
+  like: number
+
+  @Field()
   createdAt: Date
 }

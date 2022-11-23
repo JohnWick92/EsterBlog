@@ -11,6 +11,8 @@ model Post {
   id String @id
   title String @unique
   author String
+  like Int
+  description String
   article String
   createdAt DateTime
   authorId String
