@@ -1,8 +1,6 @@
-import { Arg, Ctx, Mutation, Query, Resolver } from 'type-graphql'
-import { PostInput } from '../dtos/input/PostInput'
+import { Arg, Ctx, Query, Resolver } from 'type-graphql'
 import { Post } from '../dtos/models/Post'
 import { Context } from '../../context'
-import { v4 as uuid } from 'uuid'
 
 @Resolver()
 export class PostResolver {
@@ -40,24 +38,5 @@ export class PostResolver {
     if (!post) return null
 
     return post
-  }
-
-  @Mutation(() => Post)
-  async createPost(
-    @Arg('data') data: PostInput,
-    @Ctx() ctx: Context
-  ): Promise<Post> {
-    return await ctx.prisma.post.create({
-      data: {
-        id: uuid(),
-        title: data.title,
-        description: data.description,
-        like: data.like,
-        article: data.article,
-        author: data.author,
-        createdAt: data.createdAt,
-        authorId: data.authorId,
-      },
-    })
   }
 }
