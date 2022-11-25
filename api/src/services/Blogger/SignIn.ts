@@ -19,14 +19,15 @@ export default class SignInBloggerService {
     })
     if (!hasToken) {
       const tokenCode = uuid()
-      const token = await prisma.token.create({
-        data: {
-          id: uuid(),
-          token: tokenCode,
-          Blogger: { connect: { id: user.id } },
-        },
-      })
-      if (token) prisma.$disconnect()
+      const token = await prisma.token
+        .create({
+          data: {
+            id: uuid(),
+            token: tokenCode,
+            Blogger: { connect: { id: user.id } },
+          },
+        })
+        .finally(() => prisma.$disconnect())
       const bloggerWithToken = {
         id: user.id,
         name: user.name,

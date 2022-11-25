@@ -7,11 +7,12 @@ type authToken = {
 export class AuthBloggerService {
   async execute({ token }: authToken) {
     const prisma = new PrismaClient()
-    const tokenRetreived = await prisma.token.findUnique({
-      where: { token },
-      include: { Blogger: true },
-    })
-    if (tokenRetreived) prisma.$disconnect()
+    const tokenRetreived = await prisma.token
+      .findUnique({
+        where: { token },
+        include: { Blogger: true },
+      })
+      .finally(() => prisma.$disconnect())
     if (!tokenRetreived) return null
 
     const bloggerWithToken = {
