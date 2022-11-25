@@ -20,7 +20,7 @@ router.get('/', (request: Request, response: Response) => {
 
 router.post('/blogger/signUp', signUpBloggerControl.handle)
 router.post('/blogger/signIn', signInBloggerControl.handle)
-router.get('/blogger/auth', authBloggerControl.handle)
+router.post('/blogger/auth', authBloggerControl.handle)
 
 router.post('/post/createPost', createPostController.handle)
 
