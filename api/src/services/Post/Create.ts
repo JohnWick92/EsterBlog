@@ -21,7 +21,7 @@ export class CreatePostService {
     title,
   }: createPost) {
     const prisma = new PrismaClient()
-    await prisma.post.create({
+    const post = await prisma.post.create({
       data: {
         id: uuid(),
         title: title,
@@ -33,6 +33,7 @@ export class CreatePostService {
         authorId: authorId,
       },
     })
+    if (post) prisma.$disconnect()
     return '0k'
   }
 }

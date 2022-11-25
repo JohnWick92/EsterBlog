@@ -11,9 +11,15 @@ export class AuthBloggerService {
       where: { token },
       include: { Blogger: true },
     })
-
+    if (tokenRetreived) prisma.$disconnect()
     if (!tokenRetreived) return null
 
-    return tokenRetreived.Blogger
+    const bloggerWithToken = {
+      id: tokenRetreived.id,
+      name: tokenRetreived.Blogger.name,
+      email: tokenRetreived.Blogger.email,
+      token: tokenRetreived.token,
+    }
+    return bloggerWithToken
   }
 }

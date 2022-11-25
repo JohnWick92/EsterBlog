@@ -26,6 +26,7 @@ export default class SignInBloggerService {
           Blogger: { connect: { id: user.id } },
         },
       })
+      if (token) prisma.$disconnect()
       const bloggerWithToken = {
         id: user.id,
         name: user.name,
