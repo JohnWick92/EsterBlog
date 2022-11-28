@@ -10,7 +10,9 @@ type signInInfoType = {
 export default class SignInBloggerService {
   async execute({ email, password }: signInInfoType) {
     const prisma = new PrismaClient()
-    const user = await prisma.blogger.findUnique({ where: { email: email } })
+    const user = await prisma.blogger
+      .findUnique({ where: { email: email } })
+      .finally(() => prisma.$disconnect())
     if (!user) return null
     const validation = await compare(password, user.password)
     if (!validation) return null

@@ -16,7 +16,7 @@ export class AuthBloggerService {
     if (!tokenRetreived) return null
 
     const bloggerWithToken = {
-      id: tokenRetreived.id,
+      id: tokenRetreived.Blogger.id,
       name: tokenRetreived.Blogger.name,
       email: tokenRetreived.Blogger.email,
       token: tokenRetreived.token,
