@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#menuWrapper {
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 35px;
+}
+
+#menuWrapper li {
+  display: inline;
+  padding: 30px;
+}
