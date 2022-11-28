@@ -14,11 +14,11 @@ import { GET_POST } from '../gql/Querys'
 import moment from 'moment'
 import Menu from './Menu'
 
-function getPost(postId?: string) {
-  if (postId != undefined && postId != null) {
+function getPost(postTitle?: string) {
+  if (postTitle != undefined && postTitle != null) {
     const { data, error } = useQuery(GET_POST, {
       variables: {
-        id: postId,
+        title: postTitle,
       },
     })
     if (error) console.log(error.message)
@@ -28,7 +28,7 @@ function getPost(postId?: string) {
 
 export default function Post() {
   const postContext = usePost()
-  const post: postType = getPost(postContext.post?.id)
+  const post: postType = getPost(postContext.post?.title)
   return (
     <div>
       <Menu />
