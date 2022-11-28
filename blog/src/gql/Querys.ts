@@ -7,7 +7,6 @@ export const PREVIEW_BY_LIKE = gql`
       title
       description
       createdAt
-      category
     }
   }
 `
@@ -19,7 +18,6 @@ export const PREVIEW_BY_DATE = gql`
       title
       description
       createdAt
-      category
     }
   }
 `
@@ -35,7 +33,6 @@ export const GET_ALL_POST_BY_DATE = gql`
       author
       article
       authorId
-      category
     }
   }
 `
@@ -51,14 +48,13 @@ export const GET_ALL_POST_BY_LIKE = gql`
       author
       article
       authorId
-      category
     }
   }
 `
 
 export const GET_POST = gql`
-  query GetPost($id: String!) {
-    getPost(id: $id) {
+  query GetPost($title: String!) {
+    getPost(title: $title) {
       like
       title
       id
@@ -67,7 +63,6 @@ export const GET_POST = gql`
       authorId
       author
       article
-      category
     }
   }
 `
