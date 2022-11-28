@@ -15,8 +15,8 @@ model Post {
   description String
   article String
   createdAt DateTime
-  authorId String
   Blogger Blogger @relation(fields: [authorId], references: [id])
+  authorId String
 }
 
 // model User {

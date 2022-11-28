@@ -12,13 +12,15 @@ export default class SignUpBloggerService {
   async execute({ email, name, password }: signUpType) {
     const prisma = new PrismaClient()
     const passwordHash = await hash(password, 12)
-    await prisma.blogger.create({
-      data: {
-        email: email,
-        id: uuid(),
-        name: name,
-        password: passwordHash,
-      },
-    })
+    await prisma.blogger
+      .create({
+        data: {
+          email: email,
+          id: uuid(),
+          name: name,
+          password: passwordHash,
+        },
+      })
+      .finally(() => prisma.$disconnect())
   }
 }

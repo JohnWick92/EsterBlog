@@ -3,14 +3,11 @@ import { Request, Response } from 'express'
 
 export default class CreatePostController {
   async handle(request: Request, response: Response) {
-    const { title, description, like, createdAt, author, authorId, article } =
-      request.body
+    const { title, description, author, authorId, article } = request.body
     const createPostService = new CreatePostService()
     const post = await createPostService.execute({
       title,
       description,
-      like,
-      createdAt,
       author,
       authorId,
       article,

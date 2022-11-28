@@ -7,20 +7,15 @@ type createPost = {
   article: string
   author: string
   authorId: string
-  createdAt: Date
-  like: number
 }
 
 export class CreatePostService {
-  async execute({
-    article,
-    author,
-    authorId,
-    createdAt,
-    description,
-    title,
-  }: createPost) {
+  async execute({ article, author, authorId, description, title }: createPost) {
     const prisma = new PrismaClient()
+    const user = await prisma.blogger
+      .findUnique({ where: { id: authorId } })
+      .finally(() => prisma.$disconnect())
+    if (!user) return null
     await prisma.post
       .create({
         data: {
@@ -30,7 +25,7 @@ export class CreatePostService {
           like: 0,
           article: article,
           author: author,
-          createdAt: createdAt,
+          createdAt: new Date(),
           authorId: authorId,
         },
       })
