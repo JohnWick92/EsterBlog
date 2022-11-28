@@ -1,7 +1,7 @@
 import { createContext, Dispatch, SetStateAction, useState } from 'react'
 
 export interface postSearchType {
-  id: string
+  title: string
 }
 
 export interface postType {
