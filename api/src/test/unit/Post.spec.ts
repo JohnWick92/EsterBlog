@@ -13,4 +13,16 @@ describe('Post test switch', () => {
     })
     expect(result).toBe('0k')
   })
+
+  it('should return null if author do not exists', async () => {
+    const CreatePost = new CreatePostService()
+    const result = await CreatePost.execute({
+      article: 'Vitest',
+      author: 'John',
+      authorId: '',
+      description: 'Vitest',
+      title: 'Vitest',
+    })
+    expect(result).toBe(null)
+  })
 })
